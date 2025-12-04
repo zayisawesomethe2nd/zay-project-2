@@ -12,13 +12,12 @@ const router = (app) => {
   app.get('/logout', mid.requiresLogin, controllers.Account.logout);
 
   app.get('/viewer', mid.requiresLogin, controllers.Viewer.viewerPage);
-  app.get('/buildMaker', mid.requiresLogin, controllers.BuildMaker.makerPage)
+  app.get('/buildMaker', mid.requiresLogin, controllers.BuildMaker.makerPage);
   app.post('/buildMaker', mid.requiresLogin, controllers.BuildMaker.makeBuild);
   app.delete('/unmaker', mid.requiresLogin, controllers.Viewer.deleteBuild);
 
   // for retrieving data from the data dragon API
   app.get('/api/champions', mid.requiresLogin, controllers.BuildMaker.getChampionList);
-
 
   app.get('/', mid.requiresSecure, mid.requiresLogout, controllers.Account.loginPage);
 };

@@ -1,10 +1,10 @@
-const models = require('../models');
-const { Build } = models;
-
 // https://axios-http.com/docs/api_intro
 // using axios for external API calls! some above and beyond i think
 const axios = require('axios');
 
+const models = require('../models');
+
+const { Build } = models;
 
 const makerPage = async (req, res) => {
   res.render('buildMaker');
@@ -32,7 +32,12 @@ const makeBuild = async (req, res) => {
   try {
     const newBuild = new Build(buildData);
     await newBuild.save();
-    return res.status(201).json({ name: newBuild.name, champion: newBuild.champion, desc: newBuild.desc, publicBuild: newBuild.publicBuild });
+    return res.status(201).json({
+      name: newBuild.name,
+      champion: newBuild.champion,
+      desc: newBuild.desc,
+      publicBuild: newBuild.publicBuild,
+    });
   } catch (err) {
     console.log(err);
     if (err.code === 11000) {
@@ -42,11 +47,11 @@ const makeBuild = async (req, res) => {
   }
 };
 
-// the first API call to the league server. retrieves all of the champions for the 
+// the first API call to the league server. retrieves all of the champions for the
 // dropdown menu when creating a build for a specific champion.
 const getChampionList = async (req, res) => {
   try {
-    // the url that contains all champions. current patch. 
+    // the url that contains all champions. current patch.
     // gonna look for a way to keep it up to date in the future.
     const url = 'https://ddragon.leagueoflegends.com/cdn/15.23.1/data/en_US/champion.json';
     const response = await axios.get(url);
@@ -55,20 +60,19 @@ const getChampionList = async (req, res) => {
     const champions = [];
 
     // adding all names to the array.
-    for (const championID in championData) {
+    Object.keys(championData).forEach((championID) => {
       champions.push({
-        // id is for getting images and more data about the champ
+        // champ id for getting images, descriptions, etc
         id: championID,
-        // name is for display on client side
-        name: championData[championID].name
-      });    
-    }
+        // their actual name
+        name: championData[championID].name,
+      });
+    });
     res.json({ champions });
   } catch (err) {
     return res.status(500).json({ error: 'An error occured fetching champions!' });
   }
-}
-
+};
 
 module.exports = {
   makerPage,

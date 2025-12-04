@@ -1,4 +1,5 @@
 const models = require('../models');
+
 const { Build } = models;
 
 const viewerPage = (req, res) => res.render('app');
@@ -21,15 +22,13 @@ const deleteBuild = async (req, res) => {
   try {
     const { id } = req.body;
     // deletes build from existence
-    await Build.deleteOne({ _id: id, owner: req.session.account._id }); 
+    await Build.deleteOne({ _id: id, owner: req.session.account._id });
     return res.json({ message: 'Deleted Build successfully' });
   } catch (err) {
     console.log(err);
     return res.status(500).json({ error: 'An error occured deleting build!' });
   }
 };
-
-
 
 module.exports = {
   viewerPage,

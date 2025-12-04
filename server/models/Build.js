@@ -29,7 +29,7 @@ const buildSchema = new mongoose.Schema({
     type: [Number],
     default: [],
   },
-  // the order of abilities 
+  // the order of abilities
   skillpoints: {
     type: [String],
     default: [],
