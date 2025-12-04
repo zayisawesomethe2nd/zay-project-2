@@ -8,13 +8,14 @@ const handleLogin = (e) => {
 
     const username = e.target.querySelector('#user').value;
     const pass = e.target.querySelector('#pass').value;
+    const premium = e.target.querySelector('#premium').checked;
 
     if (!username || !pass) {
         helper.handleError('Username or password is empty!');
         return false;
     }
 
-    helper.sendPost(e.target.action, {username, pass});
+    helper.sendPost(e.target.action, {username, pass, premium});
     return false;
 };
 
@@ -25,6 +26,7 @@ const handleSignup = (e) => {
     const username = e.target.querySelector('#user').value;
     const pass = e.target.querySelector('#pass').value;
     const pass2 = e.target.querySelector('#pass2').value;
+    const premium = e.target.querySelector('#premium').checked;
 
     if (!username || !pass || !pass2) {
         helper.handleError('All fields are required!');
@@ -36,7 +38,7 @@ const handleSignup = (e) => {
         return false;
     }
 
-    helper.sendPost(e.target.action, {username, pass, pass2});
+    helper.sendPost(e.target.action, {username, pass, pass2, premium});
 
     return false
 };
@@ -54,6 +56,8 @@ const LoginWindow = (props) => {
             <input id="user" type="text" name="username" placeholder="username" />
             <label htmlFor="pass">Password: </label>
             <input id="pass" type="password" name="pass" placeholder="password" />
+            <label htmlFor="premium">Premium? </label>
+            <input id="premium" type="checkbox" name="premium" />
             <input className="formSubmit" type="submit" value="Sign in" />
         </form>
     );
@@ -74,6 +78,8 @@ const SignupWindow = (props) => {
             <input id="pass" type="password" name="pass" placeholder="password" />
             <label htmlFor="pass2">Password: </label>
             <input id="pass2" type="password" name="pass2" placeholder="retype password" />
+            <label htmlFor="premium">Premium? </label>
+            <input id="premium" type="checkbox" name="premium" />
             <input className="formSubmit" type="submit" value="Sign up" />
         </form>
     );

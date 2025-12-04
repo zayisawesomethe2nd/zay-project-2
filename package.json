@@ -1,5 +1,5 @@
 {
-  "name": "domomaker",
+  "name": "buildmaker",
   "version": "1.0.0",
   "description": "A Simple Login Example using Node.js, Mongo and Redis",
   "main": "./server/app.js",
@@ -21,6 +21,7 @@
   "author": "Cody Van De Mark / Austin Willoughby",
   "license": "Apache 2.0",
   "dependencies": {
+    "axios": "^1.13.2",
     "bcrypt": "^6.0.0",
     "compression": "^1.8.1",
     "connect-redis": "^9.0.0",
