@@ -38,7 +38,7 @@ const handleSignup = (e) => {
         return false;
     }
 
-    helper.sendPost(e.target.action, {username, pass, pass2, premium});
+    helper.sendPost(e.target.action, {username, email, pass, pass2, premium});
 
     return false
 };
@@ -52,6 +52,7 @@ const LoginWindow = (props) => {
             method="POST"
             className="mainForm"
         >
+            <h3>Login</h3>
             <label htmlFor="username">Username: </label>
             <input id="user" type="text" name="username" placeholder="username" />
             <label htmlFor="pass">Password: </label>
@@ -72,8 +73,11 @@ const SignupWindow = (props) => {
             method="POST"
             className="mainForm"
         >
+            <h3>Create an Account</h3>
             <label htmlFor="username">Username: </label>
             <input id="user" type="text" name="username" placeholder="username" />
+            <label htmlFor="email">Email: </label>
+            <input id="email" type="email" name="email" placeholder="email" />
             <label htmlFor="pass">Password: </label>
             <input id="pass" type="password" name="pass" placeholder="password" />
             <label htmlFor="pass2">Password: </label>

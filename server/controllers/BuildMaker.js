@@ -23,11 +23,12 @@ const makeBuild = async (req, res) => {
     name: req.body.name,
     champion: req.body.champion,
     desc: req.body.desc,
+    skillPoints: req.body.skillPoints,
+    runes: req.body.runes,
+    items: req.body.items,
     publicBuild: req.body.publicBuild,
     owner: req.session.account._id,
   };
-
-  console.log(buildData);
 
   try {
     const newBuild = new Build(buildData);
@@ -36,7 +37,11 @@ const makeBuild = async (req, res) => {
       name: newBuild.name,
       champion: newBuild.champion,
       desc: newBuild.desc,
+      skillPoints: newBuild.skillPoints,
+      runes: newBuild.runes,
+      items: newBuild.items,
       publicBuild: newBuild.publicBuild,
+      redirect: '/viewer',
     });
   } catch (err) {
     console.log(err);
@@ -74,8 +79,87 @@ const getChampionList = async (req, res) => {
   }
 };
 
+// Our second call to the DataDragon API, this will be for retrieving the different
+// runes.
+const getRunesList = async (req, res) => {
+  try {
+    // Data Dragon URL for runes
+    const url = 'https://ddragon.leagueoflegends.com/cdn/15.23.1/data/en_US/runesReforged.json';
+    const response = await axios.get(url);
+
+    const runesData = response.data;
+
+    // A whole thing. Let's go step by step here...
+    const runes = runesData.map((path) => ({
+      // Here is the path, which determines which keystones become available.
+      pathName: path.name,
+      key: path.key,
+
+      // here we store the keystones.
+      keystones: path.slots[0].runes.map((rune) => ({
+        name: rune.name,
+        icon: rune.icon,
+        key: rune.key,
+      })),
+      // and here we store the minor runes. each row has a different rune triplet.
+      minorRunes: [
+        path.slots[1].runes.map((rune) => ({
+          name: rune.name,
+          icon: rune.icon,
+          key: rune.key,
+        })),
+        path.slots[2].runes.map((rune) => ({
+          name: rune.name,
+          icon: rune.icon,
+          key: rune.key,
+        })),
+        path.slots[3].runes.map((rune) => ({
+          name: rune.name,
+          icon: rune.icon,
+          key: rune.key,
+        })),
+      ],
+    }));
+    res.json({ runes });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ error: 'An error occured fetching runes!' });
+  }
+};
+
+// Our third call to the Data Dragon API, this retrieves the data of items we need for the client.
+const getItemsList = async (req, res) => {
+  try {
+    // Data Dragon URL for items. Will be a tad bit complex
+    const url = 'https://ddragon.leagueoflegends.com/cdn/15.23.1/data/en_US/item.json';
+    const response = await axios.get(url);
+
+    const itemsData = response.data.data;
+    const items = [];
+
+    Object.keys(itemsData).forEach((itemID) => {
+      const item = itemsData[itemID];
+      // retrieving id, name, and icon of the image. only items that are final components.
+      if (item.from && !item.into) {
+        items.push({
+          id: itemID,
+          name: item.name,
+          icon: item.image.full,
+        });
+      }
+    });
+
+    res.json({ items });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ error: 'An error occurred fetching items!' });
+  }
+};
+
 module.exports = {
   makerPage,
   makeBuild,
   getChampionList,
+  getRunesList,
+  getItemsList,
 };

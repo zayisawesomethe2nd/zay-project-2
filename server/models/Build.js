@@ -26,20 +26,18 @@ const buildSchema = new mongoose.Schema({
   },
   // list of items. Not required.
   items: {
-    type: [Number],
-    default: [],
-  },
-  // the order of abilities
-  skillpoints: {
     type: [String],
     default: [],
   },
-  // this is for the rune selection. as of milestone 1, this isn't really used yet.
+  // the order of abilities. not required.
+  skillPoints: {
+    type: [String],
+    default: [],
+  },
+  // this is for the rune selection. not required
   runes: {
-    primaryPath: { type: String, required: false },
-    primarySlots: [{ type: String, required: false }],
-    secondaryPath: { type: String, required: false },
-    secondarySlots: [{ type: String, required: false }],
+    type: Object,
+    default: {},
   },
   // whether or not the build is publicly accessible
   publicBuild: {
@@ -63,8 +61,9 @@ buildSchema.statics.toAPI = (doc) => ({
   name: doc.name,
   champion: doc.champion,
   desc: doc.desc,
+  skillPoints: doc.skillPoints,
+  runes: doc.runes,
   items: doc.items,
-  skillpoints: doc.skillpoints,
   id: doc._id, // need this to delete it later
 });
 

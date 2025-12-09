@@ -29,6 +29,13 @@ const AccountSchema = new mongoose.Schema({
     unique: true,
     match: /^[A-Za-z0-9_\-.]{1,16}$/,
   },
+  // for sending a reset password email
+  email: {
+    type: String,
+    required: true,
+    trim: true,
+    unique: true,
+  },
   password: {
     type: String,
     required: true,
@@ -46,6 +53,7 @@ const AccountSchema = new mongoose.Schema({
 // Converts a doc to something we can store in redis later on.
 AccountSchema.statics.toAPI = (doc) => ({
   username: doc.username,
+  email: doc.email,
   premium: doc.premium,
   _id: doc._id,
 });

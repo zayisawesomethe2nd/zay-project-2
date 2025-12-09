@@ -1,5 +1,5 @@
 html, body {
-    background-color:#000A10;
+    background-image:url('/assets/img/background.png');
     height: 100%;
     width: 100%;
     margin: 0;
@@ -48,61 +48,172 @@ nav:nth-child(1) {
     background-color: #66bdff;
 }
 
+/*                     */
+/* CSS for build maker */
+/*                     */
+
+
+/* Our build form which contains all of our build making components */
 .buildForm {
-    border: 2px solid #338acc;
-    width: 700px;
-    margin: 50px auto 0 auto;
+    width: 800px;
+    margin: 50px auto 100px;
     padding-top:10px;
-    background-color: #55acee;
-    border-bottom-right-radius: 4px;
-    border-top-right-radius: 4px;
+    padding-bottom:40px;
+    background-color: #55acee8f;
+    border-radius: 10px;
     display:block;
+    overflow-y: auto;
     
 }
 
+/* Our champion selection row, including the banner, champ dropdown, title, and desc */
+.champion-select-row {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+/* Champ left column incldues banner and champ dropdown */
+.champion-left-column {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  padding-left: 10px;
+}
+
+/* Empty champ banner */
+.empty-champion-banner {
+  width: 120px;
+  height: 200px;  
+  background-color: #f0f0f0; 
+}
+
+/* Champ banner */
+.champion-banner {
+  width: 120px;
+  height: auto;
+  object-fit: contain;
+}
+
+/* our champion dropdown */
+.champion-dropdown {
+  width: 120px;
+}
+
+/* Our build info column, includes title, description, and public status */
+.build-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  margin-right: 35px;
+}
+
+/* Title row includes title and public check */
+.build-title-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Our build title */
+.build-title {
+  flex: 1;
+}
+
+/* Our public checkbox label */ 
+.public-label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Our build description box. Need it to take remaining width */
+.build-desc {
+  width: 100%;
+  resize: none;
+}
+
+/* Literally just the checkbox label */
 .buildForm label {
     display: inline-block;
-    width: 100px;
-    margin-left: 10px;
-    font-size: 1.2em;
+    font-size: 1em;
     color: white;
 }
 
-#buildDesc {
-    resize: none;
+/* Our submit/cancel buttons at the bottom */
+.form-buttons {
+  display: flex;
+  justify-content: flex-end; /* align to the right */
+  gap: 10px; /* space between buttons */
+  margin-top: 80; /* space above buttons */
+  margin-right: 35px;
 }
 
-.makeBuildSubmit {
+/* Submit build button */
+.make-build-submit {
     transition: background-color 0.4s ease;
-    display: inline;
     width: 90px;
     background-color: #55acee;
-    border-radius: 2px;
+    border-radius: 5px;
     color: white;
     text-decoration: none;
 }
 
-.makeBuildSubmit:link, .makeBuildSubmit:visited, .makeBuildSubmit:hover, .makeBuildSubmit:active {
+.make-build-submit:link, .make-build-submit:visited, .make-build-submit:hover, .make-build-submit:active {
     color: white;
 }
 
-.makeBuildSubmit:hover {
+.make-build-submit:hover {
     transition: background-color 0.4s ease;
     background-color: #338acc;
 }
 
-.mainForm {
-    height: 300px;
-    width: 350px;
-    margin: 0 auto;
-    padding-top: 350px;
-    font-size: 1.2em;
+/* Cancel build button */
+.cancel-build {
+    transition: background-color 0.4s ease;
+    width: 110px;
+    height: 32px;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    color: #000000;
+    text-decoration: none;
 }
 
+.cancel-build:link, .cancel-build:visited, .cancel-build:hover, .cancel-build:active {
+    color: #f5f5f5;
+}
+
+.cancel-build:hover {
+    transition: background-color 0.4s ease;
+    background-color: #b3b3b3;
+}
+
+
+/*            */
+/* Login form */
+/*            */
+
+/* Login and signup form */
+.mainForm {
+    width: 350px;
+    font-size: 1.2em;
+    margin: 50px auto 100px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top:10px;
+    padding-bottom:15px;
+    background-color: #55acee8f;
+    border-radius: 10px;
+}
+
+/* Form header */
 .mainForm h3 {
     text-align: center;
 }
 
+/* Labels for username, pass, etc */
 .mainForm label {
     display: inline-block;
     width: 100px;
@@ -111,39 +222,42 @@ nav:nth-child(1) {
     font-size: 1.2em;
 }
 
+/* Login/signup button */
 .formSubmit {
-    transition: background-color 0.4s ease;
-    display: block;
-    text-align: center;
-    margin: 0 auto;
-    margin-top: 14px;
-    font-size: 1.2em;
-    width: 100px;
-    background-color: #55acee;
-    border-radius: 2px;
-    border-color: #66acee;
-    padding: 3px 0px;
-    color: white;
-    text-decoration: none;
+  transition: background-color 0.4s ease;
+  display: block;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 14px;
+  font-size: 1.2em;
+  width: 100px;
+  background-color: #55acee;
+  border-radius: 2px;
+  border-color: #66acee;
+  padding: 3px 0px;
+  color: white;
+  text-decoration: none;
 }
 
 .formSubmit:link, .formSubmit:visited, .formSubmit:hover, .formSubmit:active {
-    color: white;
+  color: white;
 }
 
 .formSubmit:hover {
-    transition: background-color 0.4s ease;
-    background-color: #338acc;
+  transition: background-color 0.4s ease;
+  background-color: #338acc;
 }
 
-#user, #pass, #pass2 {
-    text-align: center;
-    font-size: 1.1em;
-    width: 180px;
-    border-radius: 6px;
+/* Text boxes */
+#user, #email, #pass, #pass2, #email {
+  text-align: center;
+  font-size: 1.1em;
+  width: 180px;
+  border-radius: 6px;
+  margin-bottom: 5px;
 }
 
-#user:focus, #pass:focus, #pass2:focus {
+#user:focus, #pass:focus, #pass2:focus, #email:focus {
     outline: none;
     box-shadow: 0px 0px 1px 1px #55acee;
 }
@@ -170,31 +284,42 @@ nav:nth-child(1) {
 }
 
 #speech {
-    height: 120px;
-    width: 250px;
-    z-index:300;
+  width: 250px;
+  height: 120px;
+  background-color: rgba(0, 0, 0, 0.027);
+  position: relative;
+  margin-bottom: 10px;
+  align-items: left;
 }
 
+/* Error message */
 #errorMessage {
-    font-size: 1.2em;
-    font-weight: bold;
-    color: red;
-    font-style: italic;
+    font-size: 1em;
+    color: rgb(255, 255, 255);
 }
 
+#errorMinionName {
+  font-size: 1em;
+  color: #3EB8F4;
+}
+
+/* Caster minion image */
 #build {
     z-index: 225;
     margin-top: -20px;
-    margin-left: 135px;
-    height: 450px;
-    width: 300px;
+    margin-left: 35px;
     -ms-transform: rotate(330deg);
     -webkit-transform: rotate(330deg); 
     transform: rotate(330deg);
 }
 
+/*              */
+/* Build Viewer */
+/*              */
+
+/* Container holding all our builds in the viewer */
 #builds {
-    width: 40%;
+    width: 65%;
     min-width: 400px;
     border: 2px solid #55acee;
     border-radius: 4px;
@@ -202,94 +327,401 @@ nav:nth-child(1) {
     margin-top: 100px;
 }
 
+/* Container for all builds */
+.buildList {
+  display: flex;
+  flex-direction: column; /* stack builds vertically */
+  gap: 20px;
+  padding: 20px;
+}
+
+/* Our individual build card */
 .build {
-    width: 95%;
-    margin: 0 auto;
-    margin-top: 2px;
-    margin-bottom: 2px;
-    border: 2px solid #55acee;
-    border-radius: 4px;
-    background-color: #55acee;
-    padding: 10px;
-    min-height:60px;
-    overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  width: 97%;
+  min-height: 120px;
+  padding: 15px;
+  margin: 2px auto;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-sizing: border-box;
 }
 
-.build:hover {
-    transition: border-color 0.2s ease-out;
-    border-color: rgba(255,255,255, 0.8);
-    transition: background-color 2.6s ease-out;
-    background-color: #66bfff;
+/* Left column, contains sprite image and champion name */
+.build-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  margin-right: 20px;
+  min-width: 120px;
+}
+
+/* Our champ's face */
+.build-face {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+/* Our champ's name */
+.build-champion {
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
 }
 
 
 
-img.buildChamp {
-    margin-left: 25px;
-    margin-right: 10px;
-    height: 50px;
-    width: 50px;
-    border-radius: 4px;
-    margin-top:10px;
-    float:left;
+/* Build title */
+.build-title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: bold;
 }
 
-h3.emptyBuild {
-    width: 400px;
-    font-size: 1.5em;
-    margin: 0 auto;
+/* Build description */
+.build-description {
+  margin-top: 8px;
+  font-size: 14px;
+  color: #555;
+  line-height: 1.4;
+}
+
+/*  */
+.build-runes-items-skills {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+/* Rune grid section of our build */
+.rune-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.rune-columns {
+  display: flex;
+  gap: 12px;
+}
+
+.rune-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.rune-row {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.rune-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.rune-icon {
+  width: 32px;
+  height: 32px;
+}
+
+.build-runes-items-container {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* When runes are not selected */
+.viewer-empty-rune-slot,
+.viewer-empty-rune-path-slot,
+.viewer-empty-keystone-slot,
+.viewer-empty-minor-rune-slot {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+
+/* Our 3 column, 2 row item grid */
+.item-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 40px);
+  grid-template-rows: repeat(2, 40px);
+  gap: 6px;
+  align-content: center;
+}
+
+.item-block img {
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+}
+
+/* Displays when no item is given */
+.viewer-empty-item-slot {
+  width: 100%;
+  height: 100%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f0f0f0;
+  display: inline-block;
+}
+
+/* Skill grid */
+.build-skills {
+  display: grid;
+  grid-template-columns: repeat(9, 40px);
+  grid-template-rows: repeat(2, 40px);
+  gap: 4px;
+}
+
+.skills-container {
+  align-self: flex-start;
+}
+
+.skill-cell {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  background-color: #222;
+  border: 1px solid #555;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 18px;
+  color: white;
+  overflow: hidden;
+}
+
+.skill-level {
+  position: absolute;
+  bottom: 2px;
+  right: 4px;
+  font-size: 10px;
+  color: #ccc;
+  z-index: 2;
+}
+
+
+
+
+/* Descriptor CSS in the build making page. */
+.descriptor {
     text-align: center;
-    margin-top: 18px;
 }
 
-h2.emptyBuildSub {
-    width: 400px;
-    font-size: 1.2em;
+.descriptor h3 {
+    font-size: 1rem;
+}
+
+.descriptor p {
+    font-size: 0.8rem;
+}
+
+
+/* Skill Table CSS in build maker */
+
+.skill-table {
     margin: 0 auto;
-    text-align: center;
-    margin-top: 18px;
+    border-collapse: collapse;
 }
 
-.buildMakerButton {
-    transition: border-color 0.2s ease-out;
-    border-color: rgba(255,255,255, 0.8);
-    transition: background-color 2.6s ease-out;
-    background-color: #66bfff;
-    text-align:center;
-    margin: 0 auto 10px auto;
-    display: block;
-
+.skill-table td {
+  width: 35px;
+  height: 35px;
+  padding: 0;
+  margin: 0;
 }
 
-h3.buildName {
-    float:left;
-    width: 200px;
-    font-weight: bold;
-    padding-left: 65px;
-    font-size: 1.5em;
+.skill-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: #032425;
+    border: 2px solid #C89E41;
+    border-radius: 3px;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: background 0.2s, box-shadow 0.2s;
 }
 
-h3.buildChampion {
-    float:right;
-    text-align: left;
-    width: 100px;
-    font-weight: bold;
-    padding-right: 40px;
-    font-size: 1.5em;
+.skill-box.selected {
+  background-color: #074f52;
+  box-shadow: 0 0 8px #FFD700;
 }
 
-h3.buildDesc {
-    float:none;
-    width: 400px;
-    font-weight: bold;
-    padding-left: 65px;
-    font-size: 1.5em;
+.skill-box:hover {
+  background-color: #06484a;
+  box-shadow: 0 0 4px #FFD700;
 }
 
-.build:first-child {
-    margin-top: 10px;
+.skill-letter {
+  color: #FFD700;
+  font-weight: bold;
+  opacity: 0;
+  transition: opacity 0.2s;
 }
 
-.build:last-child {
-    margin-bottom:10px;
+.skill-box:hover .skill-letter {
+  opacity: 0.3;
 }
+
+.skill-box.selected .skill-letter {
+  opacity: 1;
+}
+
+/*               */
+/* Rune Selector */
+/*               */
+
+/* General rules for rune columns */
+.rune-selector-column {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: nowrap;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 0.3rem;
+    padding: 4px 6px;
+}
+
+/* our primary rune path column */
+.primary-column {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+
+/* Secondary rune column */
+.secondary-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+
+/* Path and keystone images (next to each other) */
+.path-and-keystone {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Rune images */
+.rune-path-img {
+  width: 48px;
+  height: 48px;
+}
+
+/* Keystone images */
+.keystone-img {
+  width: 40px;
+  height: 40px;
+}
+
+/* Paths and keystones */
+.rune-path-img,
+.keystone-img,
+.empty-rune-path-slot,
+.empty-keystone-slot {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  object-fit: contain;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.minor-rune-img,
+.empty-minor-rune-slot {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: #ffffff;
+}
+
+.minor-rune-icons {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  margin-bottom: 5px;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+
+.minor-rune-dropdown select {
+    font-size: 0.6rem;
+    padding: 2px 4px;
+}
+
+
+/* Item Selector CSS*/
+
+/* Our images and empty item slot CSS */
+.item-img,
+.empty-item-slot {
+  width: 48px;
+  height: 48px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f0f0f0;
+  display: inline-block;
+}
+
+/* Our layout for the grid- three columns, two rows */
+.item-selector-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  justify-content: center;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* Our item slots themselves, centering above dropdown */
+.item-slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+
+
+
+

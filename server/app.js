@@ -32,7 +32,16 @@ redisClient.on('error', (err) => console.log('Redis Client Error', err));
 redisClient.connect().then(() => {
   const app = express();
 
-  app.use(helmet());
+  // https://tinyurl.com/54rerm28 <-- stack overflow for bypassing security policy
+  app.use(helmet({ crossOriginEmbedderPolicy: false, originAgentCluster: true }));
+  app.use(
+    helmet.contentSecurityPolicy({
+      useDefaults: true,
+      directives: {
+        'img-src': ["'self'", 'https: data: blob:'],
+      },
+    }),
+  );
   app.use('/assets', express.static(path.resolve(`${__dirname}/../hosted`)));
   app.use(favicon(`${__dirname}/../hosted/img/favicon.png`));
   app.use(compression());
