@@ -18,8 +18,17 @@ const router = (app) => {
   app.get('/logout', mid.requiresLogin, controllers.Account.logout);
 
   app.get('/buildMaker', mid.requiresLogin, controllers.BuildMaker.makerPage);
+  app.get('/getUser', mid.requiresLogin, controllers.Account.getAccountPremium);
   app.post('/buildMaker', mid.requiresLogin, controllers.BuildMaker.makeBuild);
   app.delete('/unmaker', mid.requiresLogin, controllers.Viewer.deleteBuild);
+
+  
+  app.get('/settings', mid.requiresLogin, controllers.Account.settingsPage);
+  app.post('/togglePremium', mid.requiresLogin, controllers.Account.togglePremium);
+  app.post('/requestResetCode', mid.requiresLogin, controllers.Account.requestReset);
+  app.post('/resetPassword', mid.requiresLogin, controllers.Account.resetPassword);
+
+
 
   // for retrieving data from the data dragon API
   app.get('/api/champions', mid.requiresLogin, controllers.BuildMaker.getChampionList);

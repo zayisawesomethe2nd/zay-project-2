@@ -1,51 +1,96 @@
-html, body {
-    background-image:url('/assets/img/background.png');
-    height: 100%;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
+@font-face {
+  font-family: 'Beaufort';
+  src: url('/assets/fonts/BeaufortforLOL-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Spiegel';
+  src: url('/assets/fonts/Spiegel_Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Spiegel Soft';
+  src: url('/assets/fonts/Spiegel_Regular_Soft.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+html,
+body {
+  background-image: url('/assets/img/background.png');
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  font-family: 'Spiegel', sans-serif;
 }
 
 #logo {
-    height: 40px;
-    width: 40;
-    padding-top: 5px;
-    float:left;
-    border-radius: 8px;
+  height: 40px;
+  width: 40;
+  padding-top: 5px;
+  border-radius: 8px;
+
 }
 
 nav {
-    width: 100%;
-    height: 50px;
-    background-color: #55acee;
+  background-image: url('/assets/img/navbar.jpg');
+  border-width: 2px;
+  border-style: solid;
+  border-color: #d28a2d;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  padding: 0 25px;
+}
+
+.nav-right {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  margin-right: 2rem;
 }
 
 nav:nth-child(1) {
-    padding-left: 25px;
+  padding-left: 25px;
 }
 
 .navlink {
-    padding: 5px;
-    padding-top: 12px;
-    padding-left: 20px;
-    color: white;
-    font-size: 1.3em;
-    float: left;
+  padding: 5px;
+  padding-top: 12px;
+  padding-left: 20px;
+  color: white;
+  font-size: 1.3em;
 }
 
-.navlink a, .navlink a:link, .navlink a:visited, .navlink a:hover, .navlink a:active {
-    color: white;
-    text-decoration: none;
-    padding: 5px;
-    border-radius: 4px;
-    background-color: #55acee;
-    transition: background-color 0.4s ease;
+.navlink a,
+.navlink a:link,
+.navlink a:visited,
+.navlink a:hover,
+.navlink a:active {
+  color: white;
+  text-decoration: none;
+  padding: 5px;
+  border-radius: 4px;
+  background-color: #55acee;
+  transition: background-color 0.4s ease;
 }
 
 .navlink a:hover {
-    transition: background-color 0.8s ease;
-    background-color: #66bdff;
+  transition: background-color 0.8s ease;
+  background-color: #66bdff;
+}
+
+#settings {
+  height: 40px;
+  width: 40px;
+  padding-top: 5px;
 }
 
 /*                     */
@@ -55,15 +100,15 @@ nav:nth-child(1) {
 
 /* Our build form which contains all of our build making components */
 .buildForm {
-    width: 800px;
-    margin: 50px auto 100px;
-    padding-top:10px;
-    padding-bottom:40px;
-    background-color: #55acee8f;
-    border-radius: 10px;
-    display:block;
-    overflow-y: auto;
-    
+  width: 800px;
+  margin: 50px auto 100px;
+  padding-top: 10px;
+  padding-bottom: 40px;
+  background-color: #55acee8f;
+  border-radius: 10px;
+  display: block;
+  overflow-y: auto;
+
 }
 
 /* Our champion selection row, including the banner, champ dropdown, title, and desc */
@@ -85,8 +130,8 @@ nav:nth-child(1) {
 /* Empty champ banner */
 .empty-champion-banner {
   width: 120px;
-  height: 200px;  
-  background-color: #f0f0f0; 
+  height: 200px;
+  background-color: #f0f0f0;
 }
 
 /* Champ banner */
@@ -122,7 +167,7 @@ nav:nth-child(1) {
   flex: 1;
 }
 
-/* Our public checkbox label */ 
+/* Our public checkbox label */
 .public-label {
   display: flex;
   align-items: center;
@@ -137,57 +182,63 @@ nav:nth-child(1) {
 
 /* Literally just the checkbox label */
 .buildForm label {
-    display: inline-block;
-    font-size: 1em;
-    color: white;
+  display: inline-block;
+  font-size: 1em;
+  color: white;
 }
 
 /* Our submit/cancel buttons at the bottom */
 .form-buttons {
   display: flex;
-  justify-content: flex-end; /* align to the right */
-  gap: 10px; /* space between buttons */
-  margin-top: 80; /* space above buttons */
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 80;
   margin-right: 35px;
 }
 
 /* Submit build button */
 .make-build-submit {
-    transition: background-color 0.4s ease;
-    width: 90px;
-    background-color: #55acee;
-    border-radius: 5px;
-    color: white;
-    text-decoration: none;
+  transition: background-color 0.4s ease;
+  width: 90px;
+  background-color: #55acee;
+  border-radius: 5px;
+  color: white;
+  text-decoration: none;
 }
 
-.make-build-submit:link, .make-build-submit:visited, .make-build-submit:hover, .make-build-submit:active {
-    color: white;
+.make-build-submit:link,
+.make-build-submit:visited,
+.make-build-submit:hover,
+.make-build-submit:active {
+  color: white;
 }
 
 .make-build-submit:hover {
-    transition: background-color 0.4s ease;
-    background-color: #338acc;
+  transition: background-color 0.4s ease;
+  background-color: #338acc;
 }
 
 /* Cancel build button */
 .cancel-build {
-    transition: background-color 0.4s ease;
-    width: 110px;
-    height: 32px;
-    background-color: #f5f5f5;
-    border-radius: 5px;
-    color: #000000;
-    text-decoration: none;
+  transition: background-color 0.4s ease;
+  width: 110px;
+  height: 32px;
+  background-color: #f5f5f5;
+  border-radius: 5px;
+  color: #000000;
+  text-decoration: none;
 }
 
-.cancel-build:link, .cancel-build:visited, .cancel-build:hover, .cancel-build:active {
-    color: #f5f5f5;
+.cancel-build:link,
+.cancel-build:visited,
+.cancel-build:hover,
+.cancel-build:active {
+  color: #f5f5f5;
 }
 
 .cancel-build:hover {
-    transition: background-color 0.4s ease;
-    background-color: #b3b3b3;
+  transition: background-color 0.4s ease;
+  background-color: #b3b3b3;
 }
 
 
@@ -197,29 +248,29 @@ nav:nth-child(1) {
 
 /* Login and signup form */
 .mainForm {
-    width: 350px;
-    font-size: 1.2em;
-    margin: 50px auto 100px;
-    padding-left: 5px;
-    padding-right: 5px;
-    padding-top:10px;
-    padding-bottom:15px;
-    background-color: #55acee8f;
-    border-radius: 10px;
+  width: 350px;
+  font-size: 1.2em;
+  margin: 50px auto 100px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 10px;
+  padding-bottom: 15px;
+  background-color: #55acee8f;
+  border-radius: 10px;
 }
 
 /* Form header */
 .mainForm h3 {
-    text-align: center;
+  text-align: center;
 }
 
 /* Labels for username, pass, etc */
 .mainForm label {
-    display: inline-block;
-    width: 100px;
-    margin-right: 10px;
-    text-align: right;
-    font-size: 1.2em;
+  display: inline-block;
+  width: 100px;
+  margin-right: 10px;
+  text-align: right;
+  font-size: 1.2em;
 }
 
 /* Login/signup button */
@@ -239,7 +290,10 @@ nav:nth-child(1) {
   text-decoration: none;
 }
 
-.formSubmit:link, .formSubmit:visited, .formSubmit:hover, .formSubmit:active {
+.formSubmit:link,
+.formSubmit:visited,
+.formSubmit:hover,
+.formSubmit:active {
   color: white;
 }
 
@@ -249,7 +303,11 @@ nav:nth-child(1) {
 }
 
 /* Text boxes */
-#user, #email, #pass, #pass2, #email {
+#user,
+#email,
+#pass,
+#pass2,
+#email {
   text-align: center;
   font-size: 1.1em;
   width: 180px;
@@ -257,30 +315,33 @@ nav:nth-child(1) {
   margin-bottom: 5px;
 }
 
-#user:focus, #pass:focus, #pass2:focus, #email:focus {
-    outline: none;
-    box-shadow: 0px 0px 1px 1px #55acee;
+#user:focus,
+#pass:focus,
+#pass2:focus,
+#email:focus {
+  outline: none;
+  box-shadow: 0px 0px 1px 1px #55acee;
 }
 
 .hidden {
-    display: none;
+  display: none;
 }
 
 #minionMessage {
-    top: 250px;
-    width: 250px;
-    height: 650px;
-    position: absolute;
-    z-index: 200;
-    right: 0px;
-    overflow: hidden;
+  top: 250px;
+  width: 250px;
+  height: 650px;
+  position: absolute;
+  z-index: 200;
+  right: 0px;
+  overflow: hidden;
 }
 
 #minionMessage h3 {
-    width: 200px;
-    position: absolute;
-    top: 0px;
-    left: 20px;
+  width: 200px;
+  position: absolute;
+  top: 0px;
+  left: 20px;
 }
 
 #speech {
@@ -294,8 +355,8 @@ nav:nth-child(1) {
 
 /* Error message */
 #errorMessage {
-    font-size: 1em;
-    color: rgb(255, 255, 255);
+  font-size: 1em;
+  color: rgb(255, 255, 255);
 }
 
 #errorMinionName {
@@ -305,32 +366,40 @@ nav:nth-child(1) {
 
 /* Caster minion image */
 #build {
-    z-index: 225;
-    margin-top: -20px;
-    margin-left: 35px;
-    -ms-transform: rotate(330deg);
-    -webkit-transform: rotate(330deg); 
-    transform: rotate(330deg);
+  z-index: 225;
+  margin-top: -20px;
+  margin-left: 35px;
+  -ms-transform: rotate(330deg);
+  -webkit-transform: rotate(330deg);
+  transform: rotate(330deg);
 }
 
 /*              */
 /* Build Viewer */
 /*              */
 
+.app-header {
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  margin-bottom: -50px;
+}
+
 /* Container holding all our builds in the viewer */
 #builds {
-    width: 65%;
-    min-width: 400px;
-    border: 2px solid #55acee;
-    border-radius: 4px;
-    margin: 0 auto;
-    margin-top: 100px;
+  width: 65%;
+  min-width: 400px;
+  border: 2px solid #55acee;
+  border-radius: 4px;
+  margin: 0 auto;
+  margin-top: 100px;
+  margin-bottom: 200px;
 }
 
 /* Container for all builds */
 .buildList {
   display: flex;
-  flex-direction: column; /* stack builds vertically */
+  flex-direction: column;
   gap: 20px;
   padding: 20px;
 }
@@ -348,6 +417,7 @@ nav:nth-child(1) {
   border-radius: 8px;
   background-color: #f9f9f9;
   box-sizing: border-box;
+  position: relative;
 }
 
 /* Left column, contains sprite image and champion name */
@@ -365,14 +435,15 @@ nav:nth-child(1) {
   width: 100px;
   height: 100px;
   object-fit: cover;
-  border-radius: 50%;
+  border-radius: 4px;
 }
 
 /* Our champ's name */
 .build-champion {
-  font-size: 16px;
+  font-size: 20px;
   font-weight: bold;
   text-align: center;
+  font-family: 'Beaufort', sans-serif;
 }
 
 
@@ -382,6 +453,7 @@ nav:nth-child(1) {
   margin: 0;
   font-size: 20px;
   font-weight: bold;
+  font-family: 'Spiegel', sans-serif;
 }
 
 /* Build description */
@@ -390,6 +462,7 @@ nav:nth-child(1) {
   font-size: 14px;
   color: #555;
   line-height: 1.4;
+  font-family: 'Spiegel Soft', sans-serif;
 }
 
 /*  */
@@ -433,6 +506,12 @@ nav:nth-child(1) {
 .rune-icon {
   width: 32px;
   height: 32px;
+  border-radius: 50%;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .build-runes-items-container {
@@ -507,7 +586,7 @@ nav:nth-child(1) {
   justify-content: center;
   font-weight: bold;
   font-size: 18px;
-  color: white;
+  color: #dfb427;
   overflow: hidden;
 }
 
@@ -520,28 +599,91 @@ nav:nth-child(1) {
   z-index: 2;
 }
 
+.empty-build-container {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.empty-build {
+  margin: 0;
+  font-size: 1.5em;
+  text-align: center;
+}
+
+.empty-build-sub {
+  margin: 0;
+  font-size: 1.2em;
+  text-align: center;
+}
+
+.build-maker-button {
+  padding: 10px 20px;
+  font-size: 1em;
+  cursor: pointer;
+  background-color: #55acee;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  align-self: center;
+}
+
+.make-build-outside {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  margin-top: -180px;
+}
+
+.build-maker-button:hover {
+  background-color: #338acc;
+}
+
+.delete-button {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.delete-button img {
+  width: 24px;
+  height: 24px;
+}
+
 
 
 
 /* Descriptor CSS in the build making page. */
 .descriptor {
-    text-align: center;
+  text-align: center;
 }
 
 .descriptor h3 {
-    font-size: 1rem;
+  font-size: 1rem;
+  font-family: 'Beaufort', sans-serif;
 }
 
 .descriptor p {
-    font-size: 0.8rem;
+  font-size: 0.8rem;
+  font-family: 'Spiegel Soft', sans-serif;
 }
 
 
 /* Skill Table CSS in build maker */
 
 .skill-table {
-    margin: 0 auto;
-    border-collapse: collapse;
+  margin: 0 auto;
+  border-collapse: collapse;
 }
 
 .skill-table td {
@@ -552,18 +694,17 @@ nav:nth-child(1) {
 }
 
 .skill-box {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    width: 100%;
-    height: 100%;
-    background-color: #032425;
-    border: 2px solid #C89E41;
-    border-radius: 3px;
-    cursor: pointer;
-    box-sizing: border-box;
-    transition: background 0.2s, box-shadow 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: #032425;
+  border: 2px solid #C89E41;
+  border-radius: 3px;
+  cursor: pointer;
+  box-sizing: border-box;
 }
 
 .skill-box.selected {
@@ -577,7 +718,7 @@ nav:nth-child(1) {
 }
 
 .skill-letter {
-  color: #FFD700;
+  color: #d28a2d;
   font-weight: bold;
   opacity: 0;
   transition: opacity 0.2s;
@@ -597,14 +738,14 @@ nav:nth-child(1) {
 
 /* General rules for rune columns */
 .rune-selector-column {
-    display: flex;
-    gap: 2rem;
-    justify-content: center;
-    flex-wrap: nowrap;
-    width: 100%;
-    box-sizing: border-box;
-    font-size: 0.3rem;
-    padding: 4px 6px;
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: nowrap;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 0.3rem;
+  padding: 4px 6px;
 }
 
 /* our primary rune path column */
@@ -632,12 +773,6 @@ nav:nth-child(1) {
   gap: 0.5rem;
 }
 
-/* Rune images */
-.rune-path-img {
-  width: 48px;
-  height: 48px;
-}
-
 /* Keystone images */
 .keystone-img {
   width: 40px;
@@ -652,10 +787,8 @@ nav:nth-child(1) {
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  overflow: hidden;
   background-color: #f0f0f0;
   border: 1px solid #ccc;
-  object-fit: contain;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -685,8 +818,8 @@ nav:nth-child(1) {
 
 
 .minor-rune-dropdown select {
-    font-size: 0.6rem;
-    padding: 2px 4px;
+  font-size: 0.6rem;
+  padding: 2px 4px;
 }
 
 
@@ -721,7 +854,47 @@ nav:nth-child(1) {
   gap: 0.25rem;
 }
 
+/*               */
+/* Settings Page */
+/*               */
 
+.settings-page {
+  width: 800px;
+  margin: 50px auto 100px;
+  padding: 20px 30px 40px;
+  background-color: rgba(85, 172, 238, 0.56);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto;
+  box-sizing: border-box;
+  color: white;
+}
 
+.settings-title {
+  font-size: 2em;
+  margin-bottom: 30px;
+  text-align: center;
+}
 
+.password-reset,
+.premium-status {
+  font-size: 1.3em;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  text-align: center;
+}
 
+.settings-page button {
+  cursor: pointer;
+  background-color: #55acee;
+  color: white;
+  border: none;
+  align-self: center;
+}
+
+.settings-page button:hover {
+  transition: background-color 0.4s ease;
+  background-color: #338acc;
+}

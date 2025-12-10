@@ -1,6 +1,6 @@
 const helper = require('./helper.js');
 const React = require('react');
-const {createRoot} = require('react-dom/client');
+const { createRoot } = require('react-dom/client');
 
 const handleLogin = (e) => {
     e.preventDefault();
@@ -15,7 +15,7 @@ const handleLogin = (e) => {
         return false;
     }
 
-    helper.sendPost(e.target.action, {username, pass, premium});
+    helper.sendPost(e.target.action, { username, pass, premium });
     return false;
 };
 
@@ -24,6 +24,7 @@ const handleSignup = (e) => {
     helper.hideError();
 
     const username = e.target.querySelector('#user').value;
+    const email = e.target.querySelector('#email').value;
     const pass = e.target.querySelector('#pass').value;
     const pass2 = e.target.querySelector('#pass2').value;
     const premium = e.target.querySelector('#premium').checked;
@@ -38,7 +39,7 @@ const handleSignup = (e) => {
         return false;
     }
 
-    helper.sendPost(e.target.action, {username, email, pass, pass2, premium});
+    helper.sendPost(e.target.action, { username, email, pass, pass2, premium });
 
     return false
 };
@@ -57,8 +58,6 @@ const LoginWindow = (props) => {
             <input id="user" type="text" name="username" placeholder="username" />
             <label htmlFor="pass">Password: </label>
             <input id="pass" type="password" name="pass" placeholder="password" />
-            <label htmlFor="premium">Premium? </label>
-            <input id="premium" type="checkbox" name="premium" />
             <input className="formSubmit" type="submit" value="Sign in" />
         </form>
     );
@@ -97,17 +96,17 @@ const init = () => {
 
     loginButton.addEventListener('click', (e) => {
         e.preventDefault();
-        root.render( <LoginWindow /> );
+        root.render(<LoginWindow />);
         return false
     });
 
     signupButton.addEventListener('click', (e) => {
         e.preventDefault();
-        root.render( <SignupWindow /> );
+        root.render(<SignupWindow />);
         return false;
     });
 
-    root.render( <LoginWindow /> );
+    root.render(<LoginWindow />);
 };
 
 window.onload = init;

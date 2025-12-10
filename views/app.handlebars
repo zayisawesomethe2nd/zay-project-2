@@ -1,13 +1,25 @@
 <html lang="en">
+
 <head>
-  <meta charset="utf-8"/>
+  <meta charset="utf-8" />
   <title>League Build Maker</title>
-  <link rel="shortcut icon" href="/assets/img/favicon.png"/>
-  <link rel="stylesheet" type="text/css" href="/assets/style.css"/>
+  <link rel="shortcut icon" href="/assets/img/favicon.png" />
+  <link rel="stylesheet" type="text/css" href="/assets/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cookie&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Indie+Flower&family=League+Gothic&family=Noto+Sans+JP:wght@100..900&family=Pacifico&family=Tomorrow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
 </head>
+
 <body>
-  <nav><a href="/login"><img id="logo" src="/assets/img/face.png" alt="face logo"/></a>
-    <div class="navlink"><a href="/logout">Log out</a></div>
+  <nav><a href="/login"><img id="logo" src="/assets/img/face.png" alt="face logo" /></a>
+    <div class="navlink"><a href="/publicViewer">Public Builds</a></div>
+    <div class="navlink"><a href="/viewer">Personal Builds</a></div>
+    <div class="nav-right">
+      <a href="/settings"><img id="settings" src="/assets/img/setting.png" alt="settings icon" /></a>
+      <div class="navlink"><a href="/logout">Log out</a></div>
+    </div>
   </nav>
 
   <section id="app">
@@ -15,10 +27,11 @@
   </section>
 
   <div id="minionMessage" class='hidden'>
-    <img id="speech" src="/assets/img/speech.png" alt="speech box"/>
-    <span id="errorMinionName">Build Maker (Caster Minion):</span><span id="errorMessage"></span>
-    <img id="build" src="/assets/img/minion.png" alt="minion"/>
+    <div id="speech"></div>
+    <span id="errorMinionName">Build Maker (Caster Minion): </span><span id="errorMessage"></span>
+    <img id="build" src="/assets/img/minion.png" alt="minion" />
   </div>
   <script src="/assets/appBundle.js"></script>
 </body>
+
 </html>

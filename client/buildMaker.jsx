@@ -19,6 +19,9 @@ const BuildForm = (props) => {
     setSelectedChampion(champ);
   };
 
+  console.log("user: " + props.user);
+
+
   return (
     <form
       id="buildForm"
@@ -77,8 +80,12 @@ const BuildForm = (props) => {
               placeholder="What is your build called?"
               className="build-title"
             />
-            <label htmlFor="publicBuild" className="public-label">Public?</label>
-            <input id="publicBuild" type="checkbox" name="public" />
+            {props.user?.premium && (
+              <>
+                <label htmlFor="publicBuild" className="public-label">Public?</label>
+                <input id="publicBuild" type="checkbox" name="public" />
+              </>
+            )}
           </div>
 
           <textarea
@@ -91,35 +98,35 @@ const BuildForm = (props) => {
         </div>
       </div>
 
-        <Descriptor
-          title="Skill Selector"
-          description="Here, you can select the order in which you want players to select their skills."
-        />
-        <SkillSelector levels={18} onChange={props.setSkillPoints} />
+      <Descriptor
+        title="Skill Selector"
+        description="Here, you can select the order in which you want players to select their skills."
+      />
+      <SkillSelector levels={18} onChange={props.setSkillPoints} />
 
-        <Descriptor
-          title="Rune Selector"
-          description="Here, you can select your primary rune path, keystones, minor runes, and shards."
-        />
-        <RuneSelector onChange={props.setRunes} />
+      <Descriptor
+        title="Rune Selector"
+        description="Here, you can select your primary rune path, keystones, minor runes, and shards."
+      />
+      <RuneSelector onChange={props.setRunes} />
 
-        <Descriptor
-          title="Item Selector"
-          description="Here, you can create your item build."
-        />
-        <ItemSelector onChange={props.setItems} />
+      <Descriptor
+        title="Item Selector"
+        description="Here, you can create your item build."
+      />
+      <ItemSelector onChange={props.setItems} />
 
-        <div className="form-buttons">
-          <button
-            type="button"
-            className="cancel-build"
-            onClick={() => window.location.href = '/viewer'}
-          >Cancel Build</button>
-          <input
-            type="submit"
-            className="make-build-submit"
-            value="Create Build"
-          />
+      <div className="form-buttons">
+        <button
+          type="button"
+          className="cancel-build"
+          onClick={() => window.location.href = '/viewer'}
+        >Cancel Build</button>
+        <input
+          type="submit"
+          className="make-build-submit"
+          value="Create Build"
+        />
       </div>
     </form>
   );
@@ -127,48 +134,48 @@ const BuildForm = (props) => {
 
 
 const handleBuild = (e, onBuildAdded, skillPoints, runes, items) => {
-    e.preventDefault();
-    helper.hideError();
+  e.preventDefault();
+  helper.hideError();
 
-    const name = e.target.querySelector('#buildName').value;
-    const champion = e.target.querySelector('#buildChampion').value;
-    const desc = e.target.querySelector('#buildDesc').value;
-    const publicBuild = e.target.querySelector('#publicBuild').checked;
+  const name = e.target.querySelector('#buildName').value;
+  const champion = e.target.querySelector('#buildChampion').value;
+  const desc = e.target.querySelector('#buildDesc').value;
+  const publicBuild = e.target.querySelector('#publicBuild')?.checked || false;
 
-    if(!name || !champion) {
-        helper.handleError('Both name and champion are required!');
-        return false;
-    }
 
-    // kind messy, but there is some info I want, and some I don't want to save.
-    helper.sendPost(e.target.action, {
-      name, 
-      champion, 
-      desc, 
-      skillPoints: skillPoints, 
-      // storing key and icons, since icons get really weird. 
-      runes: {
-        primary: {
-          path: runes.primary.path.key || null,
-          keystone: runes.primary.keystone.key || null,
-          minors: runes.primary.minors.map(m => m ? { key: m.key, icon: m.icon } : null) || [],
-        },
-        secondary: {
-          path: runes.secondary.path.key || null,
-            minors: runes.secondary.minors?.map(m => m ? { key: m.key, icon: m.icon } : null) || [],
-
-        },
-        shards: runes.shards || [],
-      },
-      // no keys, so we use item id instead
-      items: items.map(item => item ? item.id : null),
-      publicBuild
-    }, onBuildAdded);
+  if (!name || !champion) {
+    helper.handleError('Both name and champion are required!');
     return false;
+  }
+
+  // kind messy, but there is some info I want, and some I don't want to save.
+  helper.sendPost(e.target.action, {
+    name,
+    champion,
+    desc,
+    skillPoints: skillPoints,
+    // storing key and icons, since icons get really weird. 
+    runes: {
+      primary: {
+        path: runes.primary?.path?.key || null,
+        keystone: runes.primary?.keystone?.key || null,
+        minors: (runes.primary?.minors?.map(m => m ? { key: m.key, icon: m.icon } : null)) || [],
+      },
+      secondary: {
+        path: runes.secondary?.path?.key || null,
+        minors: (runes.secondary?.minors?.map(m => m ? { key: m.key, icon: m.icon } : null)) || [],
+      },
+      shards: runes.shards || [],
+    },
+    // no keys, so we use item id instead
+    items: items.map(item => item ? item.id : null),
+    publicBuild
+  }, onBuildAdded);
+  return false;
 };
 
 // Just for creating descriptors on each category of the builder. description unnecessary
-const Descriptor = ({title, description}) => {
+const Descriptor = ({ title, description }) => {
   if (!description) {
     return (
       <div className="descriptor">
@@ -247,7 +254,7 @@ const RuneSelector = ({ onChange }) => {
   const [primaryKeystone, setPrimaryKeystone] = useState(null);
   // our three minor runes
   const [primaryMinors, setPrimaryMinors] = useState([null, null, null]);
-  
+
   // our secondary path
   const [secondaryPath, setSecondaryPath] = useState(null);
   // our secondary minors
@@ -281,84 +288,84 @@ const RuneSelector = ({ onChange }) => {
   }, [primaryPath, primaryKeystone, primaryMinors, secondaryPath, secondaryMinors, runeShards]);
 
   return (
-   <div className="rune-selector-column">
-    <div className="primary-column">
-      <div className="path-and-keystone">
-        {primaryPath && (
-          <img
-            src={`assets/img/${primaryPath.key.toLowerCase()}.png`}
-            alt={primaryPath.pathName}
-            className="rune-path-img"
-          />
-        )}
-        {!primaryPath && <div className="empty-rune-path-slot" />}
+    <div className="rune-selector-column">
+      <div className="primary-column">
+        <div className="path-and-keystone">
+          {primaryPath && (
+            <img
+              src={`assets/img/${primaryPath.key.toLowerCase()}.png`}
+              alt={primaryPath.pathName}
+              className="rune-path-img"
+            />
+          )}
+          {!primaryPath && <div className="empty-rune-path-slot" />}
 
-        {primaryKeystone && (
-          <img
-            src={`https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/${primaryKeystone.icon.toLowerCase()}`}
-            alt={primaryKeystone.key}
-            className="keystone-img"
-          />
-        )}
-        {!primaryKeystone && <div className="empty-keystone-slot" />}
+          {primaryKeystone && (
+            <img
+              src={`https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/${primaryKeystone.icon.toLowerCase()}`}
+              alt={primaryKeystone.key}
+              className="keystone-img"
+            />
+          )}
+          {!primaryKeystone && <div className="empty-keystone-slot" />}
+        </div>
+
+
+        <RunePathDropdown
+          runePaths={runePaths}
+          selectedPath={primaryPath}
+          // Reset keystone and minors
+          onSelect={(path) => {
+            setPrimaryPath(path);
+            setPrimaryKeystone(null);
+            setPrimaryMinors([null, null, null]);
+          }}
+        />
+        <KeystoneDropdown
+          key={null}
+          keystones={primaryPath?.keystones || []}
+          selectedKeystone={primaryKeystone}
+          onSelect={setPrimaryKeystone}
+        />
+
+        <MinorRunesDropdown
+          minors={primaryMinors}
+          runeSlots={primaryPath?.minorRunes || []}
+          onChange={setPrimaryMinors}
+          primarySelected={!!primaryPath}
+        />
       </div>
 
+      <div className="secondary-column">
+        <div className="path-and-keystone">
+          {secondaryPath && (
+            <img
+              src={`assets/img/${secondaryPath.key.toLowerCase()}.png`}
+              alt={secondaryPath.pathName}
+              className="rune-path-img"
+            />
+          )}
+          {!secondaryPath && <div className="empty-rune-path-slot" />}
+        </div>
 
-      <RunePathDropdown
-        runePaths={runePaths}
-        selectedPath={primaryPath}
-        // Reset keystone and minors
-        onSelect={(path) => {
-          setPrimaryPath(path);
-          setPrimaryKeystone(null);
-          setPrimaryMinors([null, null, null]);
-        }}
-      />
-      <KeystoneDropdown
-        key={null}
-        keystones={primaryPath?.keystones || []}
-        selectedKeystone={primaryKeystone}
-        onSelect={setPrimaryKeystone}
-      />
 
-      <MinorRunesDropdown
-        minors={primaryMinors}
-        runeSlots={primaryPath?.minorRunes || []}
-        onChange={setPrimaryMinors}
-        primarySelected={!!primaryPath}
-      />
-    </div>
+        <RunePathDropdown
+          runePaths={runePaths.filter(path => path !== primaryPath)}
+          selectedPath={secondaryPath}
+          onSelect={(path) => {
+            setSecondaryPath(path);
+            setSecondaryMinors([null, null]);
+          }}
+        />
 
-    <div className="secondary-column">
-      <div className="path-and-keystone">
-        {secondaryPath && (
-          <img
-            src={`assets/img/${secondaryPath.key.toLowerCase()}.png`}
-            alt={secondaryPath.pathName}
-            className="rune-path-img"
-          />
-        )}
-        {!secondaryPath && <div className="empty-rune-path-slot" />}
+        <SecondaryMinorRunesDropdowns
+          minors={secondaryMinors}
+          runeSlots={secondaryPath?.minorRunes || []}
+          secondaryPath={secondaryPath}
+          onChange={setSecondaryMinors}
+        />
       </div>
-
-
-      <RunePathDropdown
-        runePaths={runePaths.filter(path => path !== primaryPath)}
-        selectedPath={secondaryPath}
-        onSelect={(path) => {
-          setSecondaryPath(path);
-          setSecondaryMinors([null, null]);
-        }}
-      />
-
-      <SecondaryMinorRunesDropdowns
-        minors={secondaryMinors}
-        runeSlots={secondaryPath?.minorRunes || []}
-        secondaryPath={secondaryPath}
-        onChange={setSecondaryMinors}
-      />
     </div>
-  </div>
 
   );
 
@@ -500,7 +507,7 @@ const SecondaryMinorRunesDropdowns = ({ minors, runeSlots, secondaryPath, onChan
               value={selected?.name || ""}
               onChange={(e) => handleSelect(index, e.target.value)}
               disabled={!secondarySelected}
-            > 
+            >
               <option value="" disabled>Select minor rune</option>
               {groupedRunes.flat().map((rune) => {
                 const disable = otherSelection && otherSelection.group === rune.group;
@@ -584,44 +591,57 @@ const ItemSelector = ({ onChange }) => {
 
 // Crafting our build.
 const BuildMaker = () => {
-  const[reloadBuilds, setReloadBuilds] = useState(false);
-  const[skillPoints, setSkillPoints] = useState([]);
-  const[runes, setRunes] = useState([]);
-  const[items, setItems] = useState([]);
+  const [reloadBuilds, setReloadBuilds] = useState(false);
+  const [skillPoints, setSkillPoints] = useState([]);
+  const [runes, setRunes] = useState([]);
+  const [items, setItems] = useState([]);
   const [champions, setChampions] = useState([]);
+  const [user, setUser] = useState(null);
 
+  // gets the champions from dd api
   useEffect(() => {
-  const fetchChampions = async () => {
+    const fetchChampions = async () => {
       const res = await fetch('/api/champions');
       const data = await res.json();
       console.log(data);
       setChampions(data.champions);
-  };
-  fetchChampions();
+    };
+    fetchChampions();
+  }, []);
+
+  // fetches our user for checking premium status
+  useEffect(() => {
+    const fetchUser = async () => {
+      const res = await fetch('/getUser');
+      const data = await res.json();
+      setUser({ premium: data.premium });
+    };
+    fetchUser();
   }, []);
 
   return (
-      <div>
-          <div id="makeBuilds">
-              <BuildForm triggerReload={() => setReloadBuilds(!reloadBuilds)} 
-              skillPoints={skillPoints}
-              setSkillPoints={setSkillPoints}
-              runes={runes}
-              setRunes={setRunes}
-              items={items}
-              setItems={setItems}
-              champions={champions}
-              />
-          </div>
+    <div>
+      <div id="makeBuilds">
+        <BuildForm triggerReload={() => setReloadBuilds(!reloadBuilds)}
+          user={user}
+          skillPoints={skillPoints}
+          setSkillPoints={setSkillPoints}
+          runes={runes}
+          setRunes={setRunes}
+          items={items}
+          setItems={setItems}
+          champions={champions}
+        />
       </div>
+    </div>
   );
 };
 
 
 
 const init = () => {
-    const root = createRoot(document.getElementById('app'));
-    root.render( <BuildMaker /> );
+  const root = createRoot(document.getElementById('app'));
+  root.render(<BuildMaker />);
 };
 
 window.onload = init;

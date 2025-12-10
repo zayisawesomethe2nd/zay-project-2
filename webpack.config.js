@@ -5,6 +5,7 @@ module.exports = {
         app: './client/viewer.jsx',
         login: './client/login.jsx',
         buildMaker: './client/buildMaker.jsx',
+        settings: './client/settings.jsx'
     },
     module: {
         rules: [
