@@ -8,14 +8,13 @@ const handleLogin = (e) => {
 
     const username = e.target.querySelector('#user').value;
     const pass = e.target.querySelector('#pass').value;
-    const premium = e.target.querySelector('#premium').checked;
 
     if (!username || !pass) {
         helper.handleError('Username or password is empty!');
         return false;
     }
 
-    helper.sendPost(e.target.action, { username, pass, premium });
+    helper.sendPost(e.target.action, { username, pass });
     return false;
 };
 
