@@ -142,7 +142,6 @@ const resetPassword = async (req, res) => {
   delete resetCodes[req.sessionID];
 
   const account = await Account.findById(req.session.account._id);
-  if (!account) return res.status(400).json({ error: 'Account not found' });
 
   account.password = await Account.generateHash(newPassword);
   await account.save();
