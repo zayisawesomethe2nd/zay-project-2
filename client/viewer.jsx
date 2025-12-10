@@ -40,7 +40,7 @@ const BuildList = (props) => {
         <div key={build._id} className="build">
 
             <div className="build-left">
-                <img src={build.spriteURL} alt={build.champion} className="build-face" />
+                <img src={`https://ddragon.leagueoflegends.com/cdn/15.23.1/img/champion/${build.champion}.png`} alt={build.champion} className="build-face" />
                 <h3 className="build-champion">{build.champion}</h3>
             </div>
 

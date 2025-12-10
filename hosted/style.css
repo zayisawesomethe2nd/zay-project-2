@@ -344,15 +344,6 @@ nav:nth-child(1) {
   left: 20px;
 }
 
-#speech {
-  width: 250px;
-  height: 120px;
-  background-color: rgba(0, 0, 0, 0.027);
-  position: relative;
-  margin-bottom: 10px;
-  align-items: left;
-}
-
 /* Error message */
 #errorMessage {
   font-size: 1em;

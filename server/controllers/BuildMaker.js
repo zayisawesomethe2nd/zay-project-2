@@ -73,7 +73,7 @@ const getChampionList = async (req, res) => {
         name: championData[championID].name,
       });
     });
-    res.json({ champions });
+    return res.json({ champions });
   } catch (err) {
     return res.status(500).json({ error: 'An error occured fetching champions!' });
   }
@@ -120,7 +120,7 @@ const getRunesList = async (req, res) => {
         })),
       ],
     }));
-    res.json({ runes });
+    return res.json({ runes });
   } catch (err) {
     console.error(err);
     return res.status(500).json({ error: 'An error occured fetching runes!' });
@@ -149,7 +149,7 @@ const getItemsList = async (req, res) => {
       }
     });
 
-    res.json({ items });
+    return res.json({ items });
   } catch (err) {
     console.error(err);
     return res.status(500).json({ error: 'An error occurred fetching items!' });
