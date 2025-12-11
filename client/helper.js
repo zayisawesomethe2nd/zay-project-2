@@ -54,12 +54,12 @@ const sendDelete = async (url, data, handler) => {
 };
 
 const hideError = () => {
-    document.getElementById('minionMessage').classList.add('hidden');
+  document.getElementById('minionMessage').classList.add('hidden');
 }
 
 module.exports = {
-    handleError,
-    sendPost,
-    sendDelete,
-    hideError,
+  handleError,
+  sendPost,
+  sendDelete,
+  hideError,
 };
